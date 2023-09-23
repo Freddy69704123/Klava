@@ -1,14 +1,31 @@
 {
-  "name": "@fl0/template-nodejs",
+  "name": "whatsapp",
   "version": "1.0.0",
-  "description": "A simple Node.js Express app for getting started on FL0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "@open-wa/wa-automate": "^2.0.15",
+    "axios": "^1.4.0",
+    "file-type": "^12.0.0",
+    "fs": "^0.0.1-security",
+    "google-translate-tts": "^0.4.0-dev",
+    "google-tts-api": "^2.0.2",
+    "gtts": "^0.2.1",
+    "node-fetch": "^3.3.2",
+    "node-telegram-bot-api": "^0.63.0",
+    "nodejs": "^0.0.0",
+    "puppeteer": "^19.11.1",
+    "qrcode-terminal": "^0.12.0",
+    "redis": "^4.6.7",
+    "sqlite3": "^5.1.6",
+    "venom-bot": "^4.2.1",
+    "whatsapp-api": "^0.0.1",
+    "whatsapp-web.js": "https://github.com/Julzk/whatsapp-web.js/tarball/jkr_hotfix_7",
+    "wwebjs-mongo": "^1.1.0"
   }
 }
