@@ -11,13 +11,6 @@ const qrcode = require('qrcode-terminal');
 const express = require("express");
 const app = express();
 
-// This line is important to ensure your app listens to the PORT env var
-const port = process.env.PORT ?? 3311;
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
-
 let xdCount = 0;
 let messageCounter = 0;
 const dbModeracion = new sqlite3.Database('registro.db');
