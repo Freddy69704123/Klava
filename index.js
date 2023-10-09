@@ -595,7 +595,7 @@ client.on('message', async message => {
         }
     }
     if (mensajeLowerCase === "!momo" || mensajeLowerCase === "!meme" || messageCounter === 100) {
-        const folderPath = 'Freddy69704123/template-nodejs/momos';
+        const folderPath = '/opt/buildhome/repo/momos';
     
         // Obtener la lista de archivos en la carpeta "momos"
         const files = fs.readdirSync(folderPath);
@@ -791,7 +791,7 @@ client.on('message', async message => {
             }
         } else if (message.body.startsWith('!cum')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'Freddy69704123/template-nodejs/cum';
+            const folderPathfuck = '/opt/buildhome/repo/cum';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -854,7 +854,7 @@ client.on('message', async message => {
                 await message.reply('A quien se supone que te quieres coger?!');
             }
         } else if (message.body.startsWith('!hug')) {
-            const folderPathfuck = 'Freddy69704123/template-nodejs/hug';
+            const folderPathfuck = '/opt/buildhome/repo/hug';
             const files = fs.readdirSync(folderPathfuck);
 
             function getRandomImage() {
@@ -886,14 +886,14 @@ client.on('message', async message => {
                 await client.sendMessage(message.from, response, { mentions });
 
             } else {
-                const media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/autohug.jpg');
+                const media = MessageMedia.fromFilePath('/opt/buildhome/repo/autohug.jpg');
                 await message.reply('Te estas... \nAutoabrazando?');
             }
 
             // Envía media fuera del bloque if
             await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
         } else if (message.body.startsWith('!blowjob')) {
-            const folderPathfuck = 'Freddy69704123/template-nodejs/blowjob';
+            const folderPathfuck = '/opt/buildhome/repo/blowjob';
             const files = fs.readdirSync(folderPathfuck);
 
             function getRandomImage() {
@@ -925,14 +925,14 @@ client.on('message', async message => {
                 await client.sendMessage(message.from, response, { mentions });
 
             } else {
-                media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/mamaste.jpg');
+                media = MessageMedia.fromFilePath('/opt/buildhome/repo/mamaste.jpg');
                 await message.reply('Jaja, te mamas.');
             }
 
             // Envía media fuera del bloque if
             await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
         } else if (message.body.startsWith('!kill')) {
-            const folderPathfuck = 'Freddy69704123/template-nodejs/kill';
+            const folderPathfuck = '/opt/buildhome/repo/kill';
             const files = fs.readdirSync(folderPathfuck);
 
             function getRandomImage() {
@@ -964,14 +964,14 @@ client.on('message', async message => {
                 await client.sendMessage(message.from, response, { mentions });
 
             } else {
-                media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/autokill.jpg');
+                media = MessageMedia.fromFilePath('/opt/buildhome/repo/autokill.jpg');
                 await message.reply('Jaja, te mataste.');
             }
 
             // Envía media fuera del bloque if
             await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
         } else if (message.body.startsWith('!ofrecerme a')) {
-            const folderPathfuck = 'Freddy69704123/template-nodejs/ofrecerse';
+            const folderPathfuck = '/opt/buildhome/repo/ofrecerse';
             const files = fs.readdirSync(folderPathfuck);
 
             function getRandomImage() {
@@ -1003,7 +1003,7 @@ client.on('message', async message => {
                 await client.sendMessage(message.from, response, { mentions });
 
             } else {
-                media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/masturbando.jpg');
+                media = MessageMedia.fromFilePath('/opt/buildhome/repo/masturbando.jpg');
                 await message.reply('Nadie te quiere hacer el sin respeto asi que te estas tocando solo...');
             }
 
@@ -1011,7 +1011,7 @@ client.on('message', async message => {
             await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
         } else if (message.body.startsWith('!rape')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'Freddy69704123/template-nodejs/rape';
+            const folderPathfuck = '/opt/buildhome/repo/rape';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -1043,7 +1043,7 @@ client.on('message', async message => {
             }
         } else if (message.body.startsWith('!kiss')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'Freddy69704123/template-nodejs/Kema-Bot\\kiss';
+            const folderPathfuck = '/opt/buildhome/repo/kiss';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -1075,7 +1075,7 @@ client.on('message', async message => {
             }
         } else if (message.body.startsWith('!punch')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'Freddy69704123/template-nodejs/punch';
+            const folderPathfuck = '/opt/buildhome/repo/punch';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -1103,13 +1103,13 @@ client.on('message', async message => {
                 await client.sendMessage(message.from, response, { mentions });
                 await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
             } else {
-                const media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/autopunch.jpg');
+                const media = MessageMedia.fromFilePath('/opt/buildhome/repo/autopunch.jpg');
                 await message.reply('jaja que putaso se dio ese kbron.');
                 await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
             }
         } else if (message.body.startsWith('!ignorar')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'Freddy69704123/template-nodejs/ignorar';
+            const folderPathfuck = '/opt/buildhome/repo/ignorar';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -1209,11 +1209,11 @@ client.on('message', async message => {
         } else if (message.body.toLowerCase().includes("a ver")) {
 
         } else if (message.body.startsWith("!himno")) {
-            const media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/grasa.mp3');
+            const media = MessageMedia.fromFilePath('/opt/buildhome/repo/grasa.mp3');
             await message.reply('deberia llamarse "himno a la grasa".');
             client.sendMessage(message.from, media);
         } else if (message.body.startsWith("!admin")) {
-            const media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/admin.jpg');
+            const media = MessageMedia.fromFilePath('/opt/buildhome/repo/admin.jpg');
             client.sendMessage(message.from, media);
         } else if (message.body.toLowerCase().includes("mala")) {
             await message.reply('Mala tu cola, no mames. (>ᴗ•)');
@@ -1256,7 +1256,7 @@ client.on('message', async message => {
             await message.reply('Hasta luego, la memoria de tu presencia no será volátil.');
         } else if (message.body.startsWith("hola")) {
 
-            const media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/imagen2.jpg');
+            const media = MessageMedia.fromFilePath('/opt/buildhome/repo/imagen2.jpg');
             client.sendMessage(message.from, media);
         } else if (messageContent.includes("calor")) {
             // Si el mensaje es en un chat de grupo, utilizamos la mención del remitente
