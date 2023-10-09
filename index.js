@@ -206,7 +206,7 @@ client.on('message', async message => {
         const messageContent = message.body.toLowerCase();
         const content = message.body;
         const userMessage = message.body.trim().toLowerCase(); // Convertir a minúsculas
-
+    const mensajeLowerCase = message.body.toLowerCase();
 
 
         if (userMessage.includes('hazme un mundo lleno de grasa')) {
