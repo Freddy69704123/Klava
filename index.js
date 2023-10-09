@@ -200,19 +200,8 @@ const eightBallResponses = [
     'Muy dudoso.'
 ];
 let botActivo = true;
+const palabrasProhibidas = ["homosexual", "nigga", "cod points", "caldo de pollo", "hitler", "cp", "cepesito", "nazi", "tontos", "ocupo ", "ocupas", "child porn", "pornografia infantil", "caldito de pollo", "callense", "callaros", "callaos", "infantil", "niñas", "children", "menores de edad", "cepe", "codigo postal", "club penguin", "marica", "matate", "suicidate", "chat.whatsapp", "discord.gg", "chango", "simio", "maric", "joto", "calla", "cálla"];
 client.on('message', async message => {
-
-    if (message.body.toLowerCase() === '!off' && message.from.endsWith('@c.us')) {
-        botActivo = false;
-        message.reply('Bot suspendido. No responderé a los mensajes.');
-    }
-
-    if (message.body.toLowerCase() === '!on' && message.from.endsWith('@c.us')) {
-        botActivo = true;
-        message.reply('Bot reanudado. Responderé a los mensajes.');
-    }
-
-    if (botActivo === true) {
         const chatId = message.from; 
         const messageContent = message.body.toLowerCase();
         const content = message.body;
@@ -591,6 +580,55 @@ client.on('message', async message => {
         } else if (userMessage.includes('you up')) {
             message.reply('never gonna give never gonna give ooh give');
         }
+    if (mensajeLowerCase === '!delete') {
+        if (message.hasQuotedMsg) {
+            const quotedMsg = await message.getQuotedMessage();
+            if (quotedMsg) {
+                quotedMsg.delete(true);
+            } else {
+                // Manejar el caso en el que no se pudo obtener el mensaje citado
+                message.reply('No se pudo obtener el mensaje citado para eliminar.');
+            }
+        } else {
+            // Manejar el caso en el que no hay un mensaje citado
+            message.reply('No hay un mensaje citado para eliminar.');
+        }
+    }
+    if (mensajeLowerCase === "!momo" || mensajeLowerCase === "!meme" || messageCounter === 100) {
+        const folderPath = 'Freddy69704123/template-nodejs/momos';
+    
+        // Obtener la lista de archivos en la carpeta "momos"
+        const files = fs.readdirSync(folderPath);
+    
+        // Función para seleccionar una imagen aleatoria
+        function getRandomImage() {
+            const randomIndex = Math.floor(Math.random() * files.length);
+            const randomImageName = files[randomIndex];
+            return path.join(folderPath, randomImageName);
+        }
+    
+        // Obtener el ID del chat
+        const chatId = message.from;
+    
+        // Crear un mensaje de respuesta
+        const response = `Reacciona con "✈" o "🏢"!`;
+        
+        // Obtener una imagen aleatoria
+        const media = MessageMedia.fromFilePath(getRandomImage());
+    
+        // Enviar el mensaje con la imagen al chat
+        await client.sendMessage(chatId, response, { media });
+    }
+    // Verificar si el mensaje contiene alguna palabra prohibida
+    for (const palabraProhibida of palabrasProhibidas) {
+        if (mensajeLowerCase.includes(palabraProhibida.toLowerCase())) {
+            // Eliminar el mensaje que contiene una palabra prohibida
+            message.delete(true);
+            message.reply('Tu mensaje ha sido eliminado por favor evita este tipo de conductas si no quieres ser eliminado.');
+            // También puedes tomar otras acciones aquí, como notificar al usuario o registrar el evento.
+            break; // Salir del bucle una vez que se elimine el mensaje
+        }
+    }
         // Guardar el mensaje en la base de datos
         messagesDb.run('INSERT INTO messages (content) VALUES (?)', [content], (err) => {
             if (err) {
@@ -753,7 +791,7 @@ client.on('message', async message => {
             }
         } else if (message.body.startsWith('!cum')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\cum';
+            const folderPathfuck = 'Freddy69704123/template-nodejs/cum';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -785,7 +823,7 @@ client.on('message', async message => {
             }
         } else if (message.body.startsWith('!fuck')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\fuck';
+            const folderPathfuck = 'Freddy69704123/template-nodejs/fuck';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -816,7 +854,7 @@ client.on('message', async message => {
                 await message.reply('A quien se supone que te quieres coger?!');
             }
         } else if (message.body.startsWith('!hug')) {
-            const folderPathfuck = 'C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\hug';
+            const folderPathfuck = 'Freddy69704123/template-nodejs/hug';
             const files = fs.readdirSync(folderPathfuck);
 
             function getRandomImage() {
@@ -848,14 +886,14 @@ client.on('message', async message => {
                 await client.sendMessage(message.from, response, { mentions });
 
             } else {
-                const media = MessageMedia.fromFilePath('C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\autohug.jpg');
+                const media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/autohug.jpg');
                 await message.reply('Te estas... \nAutoabrazando?');
             }
 
             // Envía media fuera del bloque if
             await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
         } else if (message.body.startsWith('!blowjob')) {
-            const folderPathfuck = 'C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\blowjob';
+            const folderPathfuck = 'Freddy69704123/template-nodejs/blowjob';
             const files = fs.readdirSync(folderPathfuck);
 
             function getRandomImage() {
@@ -887,14 +925,14 @@ client.on('message', async message => {
                 await client.sendMessage(message.from, response, { mentions });
 
             } else {
-                media = MessageMedia.fromFilePath('C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\mamaste.jpg');
+                media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/mamaste.jpg');
                 await message.reply('Jaja, te mamas.');
             }
 
             // Envía media fuera del bloque if
             await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
         } else if (message.body.startsWith('!kill')) {
-            const folderPathfuck = 'C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\kill';
+            const folderPathfuck = 'Freddy69704123/template-nodejs/kill';
             const files = fs.readdirSync(folderPathfuck);
 
             function getRandomImage() {
@@ -926,14 +964,14 @@ client.on('message', async message => {
                 await client.sendMessage(message.from, response, { mentions });
 
             } else {
-                media = MessageMedia.fromFilePath('C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\autokill.jpg');
+                media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/autokill.jpg');
                 await message.reply('Jaja, te mataste.');
             }
 
             // Envía media fuera del bloque if
             await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
         } else if (message.body.startsWith('!ofrecerme a')) {
-            const folderPathfuck = 'C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\ofrecerse';
+            const folderPathfuck = 'Freddy69704123/template-nodejs/ofrecerse';
             const files = fs.readdirSync(folderPathfuck);
 
             function getRandomImage() {
@@ -965,7 +1003,7 @@ client.on('message', async message => {
                 await client.sendMessage(message.from, response, { mentions });
 
             } else {
-                media = MessageMedia.fromFilePath('C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\masturbando.jpg');
+                media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/masturbando.jpg');
                 await message.reply('Nadie te quiere hacer el sin respeto asi que te estas tocando solo...');
             }
 
@@ -973,7 +1011,7 @@ client.on('message', async message => {
             await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
         } else if (message.body.startsWith('!rape')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\rape';
+            const folderPathfuck = 'Freddy69704123/template-nodejs/rape';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -1005,7 +1043,7 @@ client.on('message', async message => {
             }
         } else if (message.body.startsWith('!kiss')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\kiss';
+            const folderPathfuck = 'Freddy69704123/template-nodejs/Kema-Bot\\kiss';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -1037,7 +1075,7 @@ client.on('message', async message => {
             }
         } else if (message.body.startsWith('!punch')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\punch';
+            const folderPathfuck = 'Freddy69704123/template-nodejs/punch';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -1065,13 +1103,13 @@ client.on('message', async message => {
                 await client.sendMessage(message.from, response, { mentions });
                 await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
             } else {
-                const media = MessageMedia.fromFilePath('C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\autopunch.jpg');
+                const media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/autopunch.jpg');
                 await message.reply('jaja que putaso se dio ese kbron.');
                 await client.sendMessage(message.from, media, { sendMediaAsSticker: true });
             }
         } else if (message.body.startsWith('!ignorar')) {
             // Ruta a la carpeta "F" (asegúrate de que la ruta sea correcta)
-            const folderPathfuck = 'C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\ignorar';
+            const folderPathfuck = 'Freddy69704123/template-nodejs/ignorar';
 
             // Obtener la lista de archivos en la carpeta "F"
             const files = fs.readdirSync(folderPathfuck);
@@ -1171,11 +1209,11 @@ client.on('message', async message => {
         } else if (message.body.toLowerCase().includes("a ver")) {
 
         } else if (message.body.startsWith("!himno")) {
-            const media = MessageMedia.fromFilePath('C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\grasa.mp3');
+            const media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/grasa.mp3');
             await message.reply('deberia llamarse "himno a la grasa".');
             client.sendMessage(message.from, media);
         } else if (message.body.startsWith("!admin")) {
-            const media = MessageMedia.fromFilePath('C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\admin.jpg');
+            const media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/admin.jpg');
             client.sendMessage(message.from, media);
         } else if (message.body.toLowerCase().includes("mala")) {
             await message.reply('Mala tu cola, no mames. (>ᴗ•)');
@@ -1218,7 +1256,7 @@ client.on('message', async message => {
             await message.reply('Hasta luego, la memoria de tu presencia no será volátil.');
         } else if (message.body.startsWith("hola")) {
 
-            const media = MessageMedia.fromFilePath('C:\\Users\\Kema-Mada\\Desktop\\Kema-Bot\\imagen2.jpg');
+            const media = MessageMedia.fromFilePath('Freddy69704123/template-nodejs/imagen2.jpg');
             client.sendMessage(message.from, media);
         } else if (messageContent.includes("calor")) {
             // Si el mensaje es en un chat de grupo, utilizamos la mención del remitente
@@ -1228,48 +1266,7 @@ client.on('message', async message => {
                 // Si el mensaje es en un chat directo con el bot, podemos usar simplemente el número del remitente
                 await client.sendMessage(chatId, `Hey, hace mucho calor y pensé en escribirte.\nEs que quiero refrescarme con el frío de tu indiferencia.`);
             }
-        } else if (messageContent === 'curioso') {
-            // Respuesta al comando "curioso"
-            const respuestasCuriosas = [
-                'Ataque a Obama (2013)\n El troleo más conocido y celebrado fue hacia el perfil de Obama el 22 de diciembre del 2013 y consistió en llenar los comentarios con la letra "ñ" en cada publicación, pues en el vocabulario inglés la "Ñ" no existe. El ataque fue reportado por noticias y Taringa. Este ataque dio paso a la creación del llamado Ataque de Denegación de Servicio, mejor conocido como DDoS. También dio origen al meme de Ñ.',
-                'Maltrato Animal (2014)\n Maltrato animal en SDLG\n Mensaje de Cristian Luna\n Durante un tiempo, un idiota subía videos maltratando a sus mascotas constantemente en el grupo. Muchas personas lo criticaban y hasta lo denunciaban por violencia gráfica y maltrato animal. Este joven, cuyo nombre se hacía pasar como Cristian Luna, acostumbraba a publicar videos de él pateando a sus perros; incluso llegó a matar a uno de ellos. Sorprendentemente, eran la gran mayoría de los miembros del grupo que no veían esto con buenos ojos; tanto así que empezaron a criticarlo y odiarlo. Debido al odio que le daban, los administradores del grupo lo banearon por completo.\n Muy pocas saben esto, pero luego de un tiempo se descubrió que esta persona serviría como la pieza clave de inspiración para nada más y nada menos que el controversial joven youtuber chileno llamado Peluchín.',
-                'El Tío Carlos Duty (2014)\n Durante el año 2014, año en el que el grupo comenzó a obtener relevancia, el grupo llegó a tener de miembro a un militar de origen latino. Este subía videos y fotos en el grupo mostrando a los otros miembros lo que era su trabajo, como enseñando sus armas o haciendo misiones en helicópteros.\n Zong_a_SDLG_-v\n Zong a SDLG -v\n El joven llegó a tener tanta popularidad que obtuvo el apodo de El Tío Carlos Duty por los miembros del grupo. De todas las cosas que llegó a publicar, solo se pudo encontrar un video que fue resubido el 10 de abril del 2017 por el canal de Two Random Men en YouTube.\n Después de muchas publicaciones, el joven anunció en el grupo que se iría a una misión importante y desde entonces no volvió a publicar jamás. Muchas teorías surgieron y la más aceptada es que creen que falleció en la misión que le encomendaron.',
-                'Reuniones Grasosas (2014-2018)\nLa llamadas Reuniones Grasosas eran unas reuniones que hacían los miembros del grupo para conocerse en persona, socializar, hacer actividades, etc. Usualmente pasaba en toda Latinoamérica; desde México, Colombia, Perú hasta Chile y Argentina. También se hacían convenciones grasosas, que es cuando los administradores del grupo (especialmente Mr. Graso) hacían actividades para conocer a sus seguidores. Para saber que eras miembro del grupo, se hacía una especie de saludo en código o \'\'señal\'.',
-                'Hackeo a Discovery Kids (2015 o 2016)\n\nEntre el 2015 o 2016, la señal de Discovery Kids sufrió un hackeo en donde transmitieron pornografía en pleno horario para los niños. Sin embargo, el hackeo duró solo unos 20 minutos y no fue transmitido en toda Latinoamérica. Luego del suceso, la compañía se disculpó en su página oficial de Facebook. Las grabaciones sobre el suceso no se pueden encontrar ya que duró muy poco el hackeo. La única evidencia de que pasó fue la disculpa de la compañía.\n\nEn un principio se culpó al grupo de Legión Holk, pero ellos negaron estos sucesos. Luego se descubrió que fueron miembros de SDLG, junto con otro grupo llamado Spiderman Cholo. El suceso terminó en algunos noticieros en Latinoamérica y Taringa.',
-                'Videojuego de SDLG (2015)\nEn 2015, un chico llamado Daniel Galeana López, anunció la creación de un videojuego indie tipo Super Mario Bros en 2D llamado SDLG Adventure. Según él comentó en una publicación en Blogpost, era un reciclaje de uno de sus juegos ya extintos "Pusheen Runner". Cuando anunció esto por el grupo, muchos de los seguidores le dieron muchas idea y algunos se ofrecieron para ayudar a producirlo.\nDaniel formó un equipo, la cual llamó DGL Soft, para la producción del videojuego, tomando unas cuantas ideas de los comentarios y así fue como salió la primera versión para después publicarlo en GooglePlay.\nSe pueden encontrar algunas grabaciones del gameplay en YouTube sobre como era este juego. Actualmente, el videojuego no está disponible.',
-                'Origen del meme Marcianito 100% real no fake (2015)\nEl meme de Marcianito 100% real no fake fue un meme ícono para SDLG, en especial su frase de \'\'100% real no feik\'\'. El origen de la frase inicialmente fue echa por el youtuber venezolano DrossRotzank como burla a una niña con discapacidad física en una publicación de Facebook el 18 de febrero del 2015 (actualmente borrada) promoviendo un vídeo del marcianito bailando con la canción cumbia de Nunca me Faltes del cantante argentino José Antonio Ríos.\nHay que recordar que Dross era conocido como el mayor troll del internet hispano en ese tiempo, que no tenía límites y tampoco hace falta mencionar que él poseía un humor bastante controversial. Además, Dross siempre tuvo cierto aprecio con la Grasa hasta el punto de promover algunos ataques que el grupo organizaba. Este hecho dio origen al Ataque del Fierro Locos y al incidente de Pedofilia en la Grasa.',
-                'Ataque a Fierro Locos (2015)\nEl ataque a Fierro Locos se trataba de una niña con discapacidad física llamada Andrea Rodriguez. Esto se dio cuando DrossRotzank hizo una publicación de Facebook promocionando un video del Marcianito 100% real no fake. Varios miembros de SDLG que seguían a Dross, publicaron la foto de Andrea y empezaron a burlarse por su discapacidad física, llamándola Fierro Locos por sus dientes.\nAndrea también fue mofada por el grupo ya que esta también tenía un novio llamado Óscar Ávila, y que después se descubrió que este la engañaba con muchas chicas ya que supuestamente los padres de Andrea le pagaban a Óscar para que fuese su pareja. Lo curioso es que el hermano mayor de Andrea pertenecía al grupo de la Grasa y pidió que pararan con el cyber-bullying comentando que no había porque burlarse de otras personas por su apariencia física.\nDurante el mes del julio de ese año, en la página del grupo CiberAbismo (otro grupo polémico aliado con SDLG), salió una supuesta noticia hecha por la prima de Andrea llamada Fanny, que decía que ella se había suicidado por el bullying que le hacían y, a causa de esto, sus padres iban a llamar a las autoridades cibernéticas para denunciar a todos los grupos polémicos. Al recibir esta noticia, muchos miembros de CiberAbismo y SDLG celebraron el suceso. Actualmente se desconoce cuál fue su paradero y también se desconoce si de verdad murió o fue todo una mentira.',
-                'Florencia Cajo (2016)\nFlorencia Cajo es una chica que perteneció al grupo desde el 2014 hasta el 2016. Su caso es bastante interesante. Ella, siendo una menor de 16 años, le había mandado unos \'\'nudes\'\' a otro chico que pertenecía al grupo y que, según la evidencia, su nombre es Julio Cézar Gomez. Aparentemente, el chico tuvo una disputa con ella lo cual su "venganza" fue difundir sus fotos privadas en todo el grupo. Te podrás preguntar: "¿Qué fue lo que hizo Florencia para merecer eso?". Simple, Florencia nunca le mandó un dibujo que el chico le había pedido.\nMuchos miembros del grupo empezaron a catalogar a Florencia como una AW (attention whore o puta de atención en español). Esto causó que recibiera acoso por parte de los miembros del grupo. Se sabe que los miembros le habían mandado sus fotos privadas a todos los contactos de Facebook que ella tenía, incluyendo su familia y su alegado novio, que terminó su relación con ella luego del incidente.\nPero el acoso no solo llegó hasta ahí, pues se sabe que los miembros del grupo la doxearon hasta más no poder, difundiendo su número de teléfono, su dirección de IP y su dirección de residencia. Después de todo lo que había ocurrido, surgió un rumor de que Florencia se había suicidado. Pero luego se descubrió que la noticia era falsa, lo cual causó que recibiera más bullying y acoso.\nEl revuelo fue tal, que se sabe que uno de los administradores del grupo, llamado Camilo Suarez, se metió en el dilema para tratar de ayudar a Florencia y calmar la situación. Pero el revuelo se volvió a escandalizar cuando Florencia lo insultó llamándolo ridículo he hipócrita, haciendo que Camilo se enojara y la empezara a insultar diciendo que ella era un estorbo y que gracias a ella, arruinaba la imagen del grupo. Esta pequeña interacción hizo que Florencia recibiera más bullying y acoso del que ya sufría, hasta que por fin decidió salirse del grupo.',
-                'Policía Selfie (2016)\nDurante el mes de marzo del 2016, un miembro veterano del grupo llamado Héctor Mauro Ramos que también era policía bancario de Ciudad México, subió en el grupo un selfie en un baño público en donde se apuntaba un arma de su cabeza. También llegó a comentar que la utilizó para amenazar a su pareja para que volviera con él. La foto se hizo muy viral dentro y fuera del grupo, y también atrajo la atención de los medios.\nExactamente el 26 de marzo del 2016, muchos reportajes, periódicos, revistas y noticieros publicaron que el policía había sido dado de baja de su cargo por el Consejo de la Secretaría de Seguridad Pública de México y fue despedido de su trabajo en la agencia policial bancaria.',
-                'Asalto en el Barrio Fortaleza (2016)\nEntre agosto y septiembre de 2016, un miembro del grupo llamado Checho Flores publicó que iba a asaltar a un niño que jugaba Pokémon Go en una plaza de su ciudad en el Barrio Fortaleza (Bolivia). Aprovechando que la prensa estaba a unas cuadras, escribió la frase "Alo Polisia :v?" como evidencia del suceso. El grupo tomó esto de una manera cómica, pero poco después salió un reportaje donde mostraban el lugar de los hechos.\nEl reportaje salió en el noticiero boliviano Telepaís del canal Unitel, en el que se hablaba del asalto a un niño que jugaba a altas horas de la noche en el centro de su ciudad. La grabación de la noticia se perdió y desde entonces, se ha convertido en un caso de Lost Media.\nCortesía de Lost Media en Español: Alo Polisia :v?',
-                'Rateros de la Grasa (2016)\n\nEl incidente del Barrio Fortaleza inspiró a muchos miembros a crear una extensión no oficial de SDLG llamado Rateros de la Grasa. Esta extensión consistía en que los miembros publicaran los delitos que hicieran. En estos \'\'crímenes\'\', llegaban a estar desde simples robos de dulces y juguetes, hasta asaltos de mano armada y distribución de drogas.\n\nActualmente, la extensión sigue activa hoy día y los miembros se dedican a publicar credenciales robados, información personal basado en el robo de dirección de IP (doxxeo), archivos sacados de la web oscura, entre otras cosas más.\n\nUno de los casos más conocidos de esta extensión fue cuando en abril del 2016, un joven llamado Matías Gómez publicó que intentaría asaltar a un banco local Santander que le quedaba cerca de su casa. Esto llamó la atención de muchos miembros y también recibieron este comunicado con mucho apoyo. No se sabe con certeza si de verdad llegó a hacerlo.\n\nOtro caso ocurrido en esta extensión fue cuando en 2021, otro miembro de la extensión llamado Antonio Rodriguez se metió a una bodega que tenía guardado muchos artículos de tecnología y terminó robando varias tabletas modelo iPad Air. El 11 de abril de ese mismo año publicó en la extensión lo que había robado y pedía ayuda a los otros miembros para que lo ayudaran a cómo desbloquearlas.\n\nSe sabe también que muchos miembros de la extensión tienen un comercio en donde se ofrecen a vender cosas que robaron, ya sea digitalmente o físicamente. Algunos se ofrecen a conseguir información de alguna persona a cambio de dinero. Este subgrupo opera con un negocio bajo las sombras y estos ejemplos eran el tipo de comportamiento que usualmente se veían en esta extensión.\n\nAl día de hoy, la extensión sigue activa pero en un grupo privado.',
-                'Saúl Leonardo y la serpiente (2017)\n\nA principio del 2017, un miembro del grupo llamado Saúl Leonardo se encontró con una serpiente venenosa en su patio. El joven publicó una foto de su patio en donde había una serpiente. Según la publicación, no era la primera vez que pasaba y que la iba a tratar de sacarla de su "territorio".\n\nEn el proceso de sacar la serpiente de su patio, la serpiente mordió a Leonardo y le inyectó un veneno que se corrió por sus venas, lo cual casi provocaba su muerte. Pocas horas después hizo una publicación en donde reveló que lo tuvieron que hospitalizar y darle tratamiento de limpieza de sangre. Luego de la publicación, muchos miembros lo utilizaron como objeto de burla y memes.',
-                'SDLG: Crónicas Épicas (2016)\n\nSDLG: Crónicas Épicas, conocido por los miembros como El cómic de la Grasa, fue un proyecto abandonado hecho por el usuario TheEopSaid, que consistía en hacer un cómic sobre SDLG y los otros grupos polémicos de Facebook que existían en ese tiempo. En este cómic, hacían referencias de algunos ataques hacia otros grupos, eventos, actividades, referencia a personajes destacados, entre otras cosas más. Debido a las tantas veces que le dieron de baja al grupo, el cómic se perdió, convirtiéndose en otro caso de Lost Media.\n\nUn usuario que trabaja en la Wiki de Lost Media en Español llamado Psychodeus, se puso en contacto con el creador del cómic y le comentó que las páginas que tenía disponibles eran las primeras 8 páginas del cómic que hacían el prólogo de la historia, más un mapa que representaba cómo estaban divididos los grupos. Psychodeus anunció esto el 1 de diciembre del 2020.\n\nCortesía de Lost Media en Español: SDLG: Crónicas Épicas',
-                'Doxxeo a los Administradores (2017)\n\nHubo un tiempo, en donde los administradores de SDLG fueron doxeados hasta más no poder por miembros del grupo. Los administradores que sufrieron el doxeo fueron Nadir, El Don Maguiber (co-fundador de la grasa) y Frozono. El doxeo fue tal que mucha gente llegó a descubrir sus números de celular, tarjetas de crédito, credenciales, etc.\n\nUno de los administradores que más sufrieron fue Maguiber, ya que lo doxearon a él y su familia, mandándoles mensajes de amenazas de robo, secuestros e incluso de muertes. A Nadir (la mano derecha de Mr. Graso) le llegaron a filtrar sus datos, la dirección de su casa, número de celular y sus nudes; se sabe que recibió mucho acoso y hasta llegaron a tirarle piedras fuera de su casa.',
-                '#Besarelpisochallenge (2017)\n\n#Besarelpisochallenge era un reto que lanzaron los administradores del grupo en el que consistía en besar o lamer el piso y mandar una foto o video por el grupo. Se prometía que todo aquel que lo hiciera recibiría el rango de administrador. Sin embargo, a pesar de que muchos miembros participaron en el reto, como era de esperarse, no se les dio nada a cambio.\n\nSegún las teorías, este reto podría haber sido una posible venganza por parte de los administradores debido a que los miembros los habían doxxeado previamente. Se cree que el plan original de todo esto fue llevado a cabo por una persona controversial llamada Alexis Quintanilla, quien era el creador del grupo Ciber Abismo y también uno de los administradores del grupo SDLG.',
-                'Productos de SDLG cancelados (2017)\n\nEn 2017, Alexis Quintanilla quiso lanzar una serie de productos al mercado que tenían imágenes del grupo SDLG.\n\nUno de los productos que intentó crear fue una línea de ropa con los diseños del grupo. Para ello, contrató a un artista para que dibujara un boceto con el personaje Pac-Man, el cual luego sería coloreado y digitalizado por computadora. Sin embargo, la línea de ropa no pudo ser vendida debido a problemas de copyright de Nintendo.\n\nEs así como estos productos de SDLG fueron cancelados antes de poder llegar al mercado.',
-                'Guerras de Pixeles: SDLG vs Legión Holk, Reddit y 4chan (2017-2020)\n\nLuego del evento masivo de /r/place en Reddit, su legado continuó en Pixel Canvas.\n\nEl 13 de mayo de 2017, Legión Holk pintó su bandera y vandalizaron arte con color verde. Poco después, SDLG saboteó su bandera y el 15 de mayo la reemplazaron con la suya. Algunos (se cree que de Legión Holk) intentaron robar un emblema de Kekistan de 4chan al suroeste de lo cual causó preocupación por una posible venganza. También se saboteó con rojo el pixel art de ponis y de Pokémon, lo cual enojó a tableros de 4chan como /mlp/ y /v/. Eventualmente, Legión Holk se retiró de la batalla pero SDLG terminó robando el emblema de Kekistan.\n\nPara el 3 de junio, SDLG duplicó el tamaño de su bandera y la rodearon con banderas de países hispanos. La de México, al norte de fue la más grande, aunque recibían constantes ataques por parte de franceses. Mientras tanto, el tablero /bant/ de 4chan pintaba su bandera nazi al noroeste de y luego decidió expandirse hacia la bandera disputada por México y Francia.\n\nEl 4 de junio un bot comenzó a pintar la cara de moot (el creador de 4chan) cubriendo el campo de batalla. Aunque fue corregido por los moderadores, dejó casi todo en blanco. 4chan aprovechó para dibujar un trébol. Gente de /r/theblackvoid en Reddit se unieron para llenar el vacío con una mancha negra, mientras que SDLG buscaba recuperar su bandera. Desde ahí, se acentuó la pelea entre SDLG y Reddit.\n\nAl final, el trébol de 4chan sucumbió ante SDLG y /r/theblackvoid. SDLG reconstruyó su bandera y se declaró victorioso, pero en la segunda semana de junio, fue consumida por /r/theblackvoid y la bandera de México terminó conquistada por brasileños.\n\nEn Mayo del 2020, la tradición revivió cuando SDLG empezó a construir su logo rodeado de banderas hispanas, pero fue interceptado por Legión Holk. SDLG llegó a conservar su bandera por un buen tiempo y la batalla cesó. Al final, SDLG fue consumida por el arte de comunistas.\n\nActualmente, puedes encontrar lo único que sobrevivió de la batalla aquí:\nhttps://pixelcanvas.io/@1896,3220',
-                'Pelea campal entre Legión Holk y SDLG (2017)\n\nOcurrido en México, esto fue una casualidad muy graciosa; resulta que en ambos grupos se iba a hacer una reunión grupal. Ambos grupos acordaron el mismo día, el mismo lugar y la misma hora.\n\nCuándo ambos grupos se encontraron, comenzaron a pelearse entre ellos, como resultado se vio a un joven ensangrentado porque lo golpearon hasta dejarlo en grave estado.',
-                'La purga de 2018\n\nA mediados de junio de 2018, y en el contexto de las elecciones federales a realizarse en México el primero de julio, SDLG y la gran mayoría de los grupos de memes en Facebook fueron totalmente eliminados, con la intención de evitar organizaciones o de afectar la intención del voto.\n\nEn el caso de La Grasa, tanto el grupo principal (que ya había superado los 600.000 miembros) como casi todas las extensiones fueron repentinamente eliminadas, las cuentas de los administradores fueron inhabilitadas y cada grupo que se creaba con el nombre o siglas de La Grasa era eliminado de forma inmediata. Tanto Mr. Graso como Nadir y los otros administradores realizaron publicaciones al respecto en sus páginas personales, explicando la situación y comentando sobre las medidas a tomar para volver a recuperar los distintos grupos y extensiones lo antes posible.\n\nLa única extensión que no fue eliminada fue Gamers de la Grasa, lugar en el que se convocaron parte de los miembros para informarse al respecto (en la mayoría de los casos, para enterarse que no habían sido baneados individualmente en todos los grupos). En ese entonces, el único medio "oficial" donde se reunían los miembros fuera de Facebook era Google Plus, de tal manera que Mr. Graso aprovechó de promover el acercamiento a dicho medio para que la comunidad pudiera reunirse.\n\nEsta purga significó un antes y un después entre los grupos de memes en Facebook, puesto que muchos de ellos nunca más pudieron volver en su nivel anterior. En el caso de la Grasa, se percibía una especie de "persecución" directamente contra el grupo, específicamente el principal, puesto que cada vez que superaba los 100.000 miembros, el grupo era eliminado, de tal manera que las mudanzas de grupo y la existencia de grupos de respaldo se volvieron una constante por al menos un año.\n\nPor su parte, las extensiones no tuvieron problemas en volver, ya que los administradores de esta rápidamente comenzaron a crear nuevos grupos y a promover la participación entre los grasosos. Esto, además, con la ayuda de los administradores principales de la Grasa, como Mr. Graso y, en mayor medida, Nadir, para la promoción de estos grupos en sus sitios personales de Facebook e Instagram.',
-                'SDLG en el Club MediaFest (2018)\n\nEl Club MediaFest es una actividad que se hace anualmente en países de Latinoamérica. En estos eventos, se reúnen a los youtubers hispanos más virales del año, cantantes de talla local (con el fin de hacerlos más conocidos) y algunos comediantes para hacer reír a la gente. A finales del año 2018, el Club MediaFest hizo su evento en Paraguay, donde el comienzo del evento fue presentado por Mr. Graso (líder y fundador de SDLG) acompañado del youtuber Tío Wolf en donde hicieron, de manera sátira, una comedia tratando a la Grasa como una religión. En la comedia, ellos estaban vestidos de obispos religiosos con imágenes del grupo.',
-                'Hackeo a El Reeven (2020)\n\nEl Reeven era un youtuber que se dedicaba a hacer troleos en internet. Desde trolear a "niños ratas" en videojuegos, hasta sabotear foros y/o convenciones por internet. Su fama surgió entre finales del 2020 al 2021 cuando "troleaba" en reuniones escolares en la plataforma de Zoom con el video de la tula de town (Un video filtrado de iTownGamePlay sacudiendo la nutria), todas llenas de niños menores de edad.\n\nMuchos youtubers empezaron a hablar sobre su contenido y criticarlo, lo cual causó mucha polémica. Lo curioso de todo esto fue que varios miembros de SDLG le hackearon su cuenta de Youtube y empezaron a borrar todos sus videos y amenazaron con hackear a otros youtubers si hacían lo mismo. Unas semanas después, borraron su canal de Youtube.',
-                'El surgimiento de los Panafrescos (2020)\n\nA principios del 2020, una nueva comunidad surgió con el propósito de ser los rivales principales de La Grasa. Los llamados Panafrescos o "Panas Frescos", se dedicaban a crear memes insultando a la grasa haciendo de que muchas personas dejaran al grupo para ser parte de los Panafrescos. Varias de las razones por las cuales odiaban a la grasa era porque sobre-usaban los mismos memes. Aunque La Grasa se defendía de los Panafrescos, fue disminuyendo y poco a poco fue quedando en el olvido. Muchos miembros de los Panafrescos eran antiguos miembros de SDLG que se "arrepentían" de ser parte de los "Grupos Autistas".',
-                'SDLV (2021)\n\nA principios del 2021, se creó un subgrupo llamado SDLV (Seguidores de los Viejos), en la que se dedica a tratar de revivir la "Grasa Antigua", aunque no hay evidencia de que lo hallan logrado y, curiosamente, no duró mucho tiempo en las redes.\n\nEste subgrupo, provenía de una porción de los miembros que defendieron al grupo durante la controversia de los Panafrescos y querían que este volviera a los ataques y actividades que hacían antes. La idea no fue muy bien recibida en el grupo principal, así que decidieron hacer su propia extensión asociada a la Grasa con el propósito de demostrar que esta idea funcionaría.\n\nEste subgrupo fue parte de polémicas de acoso, doxxeo, y amenazas hacia otros grupos. Uno de los casos más conocidos fue en el que intentaron formar una guerra contra Grupo Pendejo para Morros Pendejos (lo cual casi lo lograron) pero fueron detenidos por otro grupo llamado Derecho al Infierno el cual había hecho un tratado de alianza con SDLG para defenderlos de ataques de otros grupos.\n\nDebido al inmenso fracaso de este subgrupo, terminó siendo catalogado como un grupo falso de SDLG, lo cual el grupo de D.A.I se encargó de eliminarlo por completo de las redes sociales.',
-                'ADLG Francisco Rojas (2022)\n\nEn la extensión de SDLG llamada ADLG (Anime De La Grasa) un usuario llamado Francisco Rojas, publicaba cosplays de personajes femeninos donde se veía muy femenino al punto que hacía dudar de la sexualidad de todos en el grupo. Un día fue invitado como juez a un evento de Cosplay publicando que estaba en el evento, pero nadie lo reconoció, hasta que la cosplayer HatoJoestar publico una foto con Francisco. Mostrándose muy diferente a como se veía en sus fotos publicadas. Lo ocurrido hizo que diera un comunicado en donde había informado que se iba a tomar una foto de él sin filtros. La publicación fue en su perfil, pero muchos usuarios no tardaron en ver indicios donde si había editado su foto. Se excusó dando a entender que podía ser por la luz o el ángulo donde se tomó la misma. Varios usuarios compararon las caras de cada cosplay y se veía que los rasgos de la cara cambiaban en algunos cosplays donde se veía raro. Los memes de la polémica se dispararon y en ADLG se hizo una censura orquestada por el moderador Tute Soto eliminando cualquier meme que fuera del tema. Un usuario de Twitter hackeo su cuenta de Google, no encontró nada importante, pero si encontró la foto verdadera que publico Francisco en su perfil, donde decía que no usaba filtros. La polémica escaló tanto que llego un punto en el que Francisco puso en privado su perfil y estuvo inactivo por un tiempo. el grupo ADLG donde Francisco era moderador, gano la votación del peor moderador del año. En un post llamado ‘‘El Elitista’’ en su Edición nro. 13, en la página ‘‘vergüenza del año’’ Francisco consiguió el 5.º lugar como vergüenza del año. El 4 de enero del 2023. Francisco hizo una transmisión en su cuenta personal con Janir Gremory como invitada donde tuvieron una entrevista y unas declaraciones de parte de Francisco sobre no entender la polémica y no sentirse afectado por las críticas que se le hizo. Al día siguiente borro la transmisión del mismo, y borro todas sus redes, Y tiempo despues se confirma por Janir Gremory que quien estaba en la camara no era ella, era su hermano vestido de ella. Tras su desaparición, el Administrador de ADLG, Jherson Torres, publico un Post afirmado que habían encontrado el cuerpo de Francisco sin vida. Tiempo después, Jherson elimino el post, ya que se había descubierto que era fake news. Y que el caso no estaba relacionado con Francisco.',
-                'Resurgimiento\n\nA mediados del 2020, el Shitpost Hispano evolucionó a ser un humor más estructurado (compuesto principalmente de humor sin sentido) gracias a un grupo llamado los Caballeros. Estos, empezaron a criticar a los Panafrescos por su hipocresía mientras criticaban a La Grasa por sobreexplotar sus memes cuando estos hacían lo mismo hasta tal punto que, irónicamente, terminaron siendo más odiados que SDLG. Los Panafrescos fueron llamados La Grasa 2.0 por estas razones, causando que quedaran en el olvido.\n\nEventualmente, varios grupos shitposting empezaron a usar imágenes macro de la serie de Breaking Bad y los parodiaba con comentarios a favor de la Grasa, este meme se conoció como Breaking Bad Grasa. Esto lo hacían con forma de burla pero no pasó poco para que la misma Grasa usara esos memes a su favor, así se empezó a revivir el grupo una ves más; con estos sucesos, se creó la famosa frase de La Grasa no muere, solo evoluciona.... Esto causó que muchos shitposters crearan la versión Anti-Grasa, que en vez de Breaking Bad, usaban imágenes de las películas de Men in Black.\n\nAunque no le dan el mismo odio que le daban los Panafrescos, esos grupos ha utilizado otras maneras para burlarse de la Grasa. Los ejemplos más destacados son los Memes Papus, que consiste en subir una foto de muy mala calidad y añadirle el famoso emoticón pacman.\n\nPero no fue hasta finales de julio y principios de agosto del 2021 en donde un usuario en Twitter publicó una imagen del Pato Lucas en traje de gala con la frase "Éramos más unidos en la grasa...", que básicamente criticaba, de manera irónica, el estado actual de los memes hispanos y describe que en La Grasa todos éramos más unidos, sin odio ni rivalidad. Aunque hay mucha ironía en ese meme, muchos shitposters empezaron a publicarlo en otras plataformas expandiendo el mensaje y reviviendo el apoyo de SDLG.\n\nMuchos otros memes empezaron a surgir, reviviendo poco a poco la relevancia del grupo. Un claro ejemplo de esto fue la aparición de una imagen macro, conocida como "La Papu Señal", que parodiaba de manera irónica los llamado que se hacían en el grupo, sobre todo en las reuniones grasosas.',
-                'La Grasa 2 (2022)\n\nAviso de la creación de La Grasa 2\n\nPara evitar un shadowban de la plataforma Facebook, se cambió su nombre de "Seguidores de La Grasa" a simplemente "La Grasa".\n\nLa Grasa 2 en Facebook (2022)\n\nEl grupo ha tenido un segundo auge tras que en marzo de 2022 Mr. Graso anunció la creación de un nuevo grupo, junto al Streamer Late, el cual estaría más enfocado al humor en general, englobando el humor autista de toda la vida y al Shitpost.',
-                'El quiebre\n\nA mediados de 2022, la Grasa sufriría un importante quiebre entre los administradores. Por un lado, Nadir reclamaría que, en realidad, Mr. Graso (que se hacía llamar públicamente el líder del grupo y actuaba como la cara visible de este), nunca realizaba publicaciones, dinámicas y no estaba realmente interesado en mantener el grupo activo, argumentando que esto lo hacían los administradores y él se llevaba el crédito, situación que no le parecía justa. Por su parte, Mr. Graso argumentaba que su elección de líder había sido decidida en los inicios del grupo, afirmando también que gracias a él el grupo aún existía, puesto que mediante sus redes sociales organizaba a los grasosos y era la cara visible del grupo.\n\nFinalmente, y luego de algunos "idas y vueltas", Nadir decidiría alejarse de Mr. Graso y crear su propio grupo "principal", en un nombre que variaría entre SDLG y/o Seguidores de la Grasa, esto en un afán de volver a las raíces y aprovechar el reconocimiento que aún tenía el nombre. Mr. Graso por su parte crearía el grupo "La Grasa :v", manteniendo la tendencia a ocultar gran parte de las siglas para evitar el baneo instantáneo de Facebook, proveniente desde la purga de 2018.\n\nEn la actualidad, el grupo principal de Nadir, «SDLG :v» cuenta con más de 113.000 miembros. Por su parte, el grupo principal de Mr. Graso, «La Grasa :v» cuenta con más de 134.000 miembros. Es importante destacar que la mayoría de los miembros no ha mostrado favoritismo por uno u otro, de tal manera que en general son parte de ambos grupos.\n\nCuriosamente, las distintas extensiones no fueron parte de dicha separación, de tal manera que es posible observar allí la convivencia entre los administradores de los dos grupos principales.',
-                'Guerras de Pixeles 3 (2022)\n\nDurante Marzo de 2022, el grupo se apoderó nuevamente de PixelCanvas.io con una tercera Guerra los Píxeles. Teniendo roces con la comunidad de 4chan nuevamente, actualmente el dibujo se encuentra destruido por los cambios de coordenadas que hizo la página el 1 de Abril de 2022, dejando el PixelArt desatendido y expuesto a vandalismo.',
-                'Momos\n\nLos memes de la Grasa, mejor conocidos como momos, están llenos de humor negro y jerga. Sin embargo, desde mediados del 2019, los memes pasaron del humor negro a contenido identificable e irónico mezclado con plantillas de escenas de la cultura popular. (Películas, series, videojuegos, frases de youtubers, etc...)\n\nEl Pacman\n\nOtro de los casos más icónicos del grupo fue al que se le asoció el emoticón pacman "V- Emoticon Pacman o sus siglas ":v" y lo usó como la cara del grupo. Además fue el grupo al que más se le culpó de apropiar la jerga Taringuera.\n\nMarcianito 100% real no fake\n\nEntre los memes más representativos, se destaca el Marcianito 100% real no feik; que se originó gracias al youtuber DrossRotzank y muchas personas de SDLG lo popularizaron por su uso excesivo en el grupo. Además, la frase del meme se utilizó mucho gracias a los llamados humildes aportes. Antes de que llegara a las comunidades hispanohablantes, el GIF del marciano se utilizó en Tumblr por comunidades angloparlantes.\n\n¿Quieres pene?\n\nOtro meme que se originó en SDLG fue el de ¿Quieres pene?, que fue otro troleo pero dirigido cualquier pagina de Facebook de diferentes empresas en la cual varios le enviaban sus dudas a dichas paginas y cuando el administrador le respondía, ellos le mandaban una imagen preguntando "¿Quieres pene?".\n\n"Este grupo será atacado por la grasa"\n\nCon el humor decayendo y con el auge de grupos hispanos del Shitpost, surgieron memes de Breaking Bad que parodiaban a los ataques de La Grasa, con frases como Este grupo será atacado por la grasa.";',
-                '¿Otro SDLG?\n\nShandong Lingong Construction Machinery Co.\nFundado en 1972, "Shandong Lingong Construction Machinery Co." es una corporación de la República Popular China.\n\nEs uno de los fabricantes más importantes de maquinaria para construcción y minería, motores diésel y turbinas industriales de gas en China, con exportaciones hacia Brasil y África. SDLG también es una filial de la empresa de Volvo.\n\nLos colores del rojo y negro, fueron la base de inspiración para los primeros Grupos Polémicos como Secta MOA, Seguidores de la Grasa, Negroserías y Clan Mantequilla.\n\nComo La Grasa y la compañía comparten las mismas siglas, la comunidad apropió el logotipo de SDLG, aunque no se sabe cuándo ocurrió esto.\n\nDesde mediados del 2020, el grupo obtuvo un nuevo logo basado en los colores originales.',
-                'Origen:\n\nPágina del Gordo Friki\nLa Grasa sirvió como grupo oficial de la página de Facebook "El Gordo Friki", creada por el paraguayo Gerardo Valdez, conocido como el "Gordo", "Mr. Graso" y muchas veces confundido como "Alexis Sánchez". En una tesis de grado publicada el 2020, se entrevista al Gordo y dice que la página "El Gordo Friki" se originó el 2010 y creó SDLG el 2013. Debido a una controversia surgida en 2022 con el grupo, Mr. Graso ha estado de que el grupo fue originalmente nombrado como "Los Seguidores de la Grasa del Gordo Friki" para luego ser renombrado a "Seguidores de la Grasa" por ser demasiado largo.\n\nPágina original de Seguidores de la Grasa\nEl grupo fue inspirado en otro grupo polémico llamado Secta MOA, cuando la página de El Gordo Friki hizo alianzas con el fundador de MOA, Jarm.\n\nEn general, grupos de este tipo se originaron por el 2012, año que ocurrió el boom de hacer páginas inspiradas en Rage Comics. Pero aquel no fue el único boom, sino también estaba de moda ser polémico y troll de Internet. Las páginas de Facebook que tenían esos fines solían llevar la etiqueta de "Humor Polémico" al final de sus nombres y algunas tenían grupos polémicos para realizar ataques a otros grupos. Todos estos grupos fueron inspirados en el padre de todos, Secta MOA.',
-                'Reuniones Grasosas (2014-2018)\nReunión grasosa\nRG en Colombia (2016)\n\nLa llamadas Reuniones Grasosas eran unas reuniones que hacían los miembros del grupo para conocerse en persona, socializar, hacer actividades, etc. Usualmente pasaba en toda Latinoamérica; desde México, Colombia, Perú hasta Chile y Argentina. También se hacían convenciones grasosas, que es cuando los administradores del grupo (especialmente Mr. Graso) hacían actividades para conocer a sus seguidores. Para saber que eras miembro del grupo, se hacía una especie de saludo en código o \'\'señal\'.'
-            ];
-
-            const respuestaAleatoria = respuestasCuriosas[Math.floor(Math.random() * respuestasCuriosas.length)];
-            await message.reply(respuestaAleatoria);
-        }
-    }
+        } 
 
 });
 xdDb.serialize(() => {
