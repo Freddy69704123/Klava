@@ -1,47 +1,36 @@
-<p align="center">
-  <a href="https://fl0.com/" target="blank">
-    <img src="https://user-images.githubusercontent.com/88681427/217122968-e6132cad-1944-4ebe-9ec1-105af6a18c4f.png">
-  </a>
-</p>
+# Klava.bot
+![Logo](logo.png)
 
-<h2 align="center">Node.js Quickstart</h2>
-<p align="center">Backend engineering, supercharged.</p>
+Klava.bot es un bot de WhatsApp desarrollado en Node.js que ofrece diversas funcionalidades. Puedes utilizarlo para enviar mensajes, responder a comandos específicos y más. Sigue las instrucciones a continuación para configurar y ejecutar el bot.
 
-## Overview
+## Instrucciones
 
-Use this repository to get up and running on FL0 with the following stack:
+### Clonar el repositorio
 
-<table>
-<tr>
-  <th>Language</th>
-  <td>Javascript</td>
-</tr>
-<tr>
-  <th>Router</th>
-  <td>Express</td>
-</tr>
-</table>
+Para comenzar, clona el repositorio:
 
-## Getting Started
+```bash
+git clone https://github.com/tuusuario/turepositorio.git
+Instalar dependencias
+Luego, instala las dependencias necesarias:
 
-Clone this repo and run the following commands from the project root:
+npm install
+Configurar el archivo .env
+Configura el archivo .env con las credenciales de WhatsApp Web:
 
-1. `npm install`
-2. `npm start`
-3. Visit http://localhost:3000 to see your app running
+env
+Copy code
+PHONE_NUMBER=TU_NUMERO
+SESSION_FILE=session.json
+Ejecutar el bot
+Finalmente, ejecuta el bot:
 
-## Deploying to FL0
+bash
+Copy code
+node index.js
+Contribuciones
+Si deseas contribuir a este proyecto, no dudes en abrir un pull request.
+Licencia
+Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
 
-Checkout our [Getting Started Guide](https://docs.fl0.com) in the FL0 documentation!
 
-## Questions
-
-If you have any questions about FL0 or this template codebase please head on over to our [Discord channel](https://discord.gg/AmmVTt9Jrw).
-
-## Issues
-
-Any issues or feature requests can be raised on the [Issues page](https://github.com/fl0zone/template-nodejs/issues) of this repo.
-
-## License
-
-This template repository is [MIT licensed](LICENSE).
