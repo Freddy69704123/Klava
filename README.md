@@ -10,7 +10,7 @@ Klava.bot es un bot de WhatsApp desarrollado en Node.js que ofrece diversas func
 Para comenzar, clona el repositorio:
 
 ```bash
-git clone [https://github.com/tuusuario/turepositorio.git](https://github.com/Freddy69704123/Klava)
+git clone https://github.com/Freddy69704123/Klava
 Instalar dependencias
 Luego, instala las dependencias necesarias:
 
